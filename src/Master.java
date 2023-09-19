@@ -170,7 +170,10 @@ public class Master {
                         System.out.print("You must enter only two coordinates in this format:\n\t1) \"2 5\"\n\t2) \"B 5\"\n\t3) \"b 5\"\nRange: 1-7, A-G, a-g\nRe-enter the coordinates: ");
                     }
                 }
-            }else System.out.print("You must enter only two coordinates in this format:\n\t1) \"2 5\"\n\t2) \"B 5\"\n\t3) \"b 5\"\nRange: 1-7, A-G, a-g\nRe-enter the coordinates: ");
+            }else{
+                System.out.print("You must enter only two coordinates in this format:\n\t1) \"2 5\"\n\t2) \"B 5\"\n\t3) \"b 5\"\nRange: 1-7, A-G, a-g\nRe-enter the coordinates: ");
+                buffer = false;
+            }
 
             if(buffer){
                 if(a < 1 || a > 7 || b < 1 || b > 7) System.out.print("You must enter only two coordinates in this format:\n\t1) \"2 5\"\n\t2) \"B 5\"\n\t3) \"b 5\"\nRange: 1-7, A-G, a-g\nRe-enter the coordinates: ");
