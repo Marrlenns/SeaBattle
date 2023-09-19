@@ -141,6 +141,48 @@ public class Master {
         return false;
     }
 
+    public static int[] Enter(){
+        Scanner scanner = new Scanner(System.in);
+        boolean ent = true;
+        int a = 0, b = 0;
+        System.out.print("Enter the coordinates: ");
+        while(ent){
+            boolean buffer = true;
+            String[] s = scanner.nextLine().split(" ");
+            if(s.length == 2){
+                if(s[0].length() > 1 || s[1].length() > 1){
+                    System.out.print("You must enter only two coordinates in this format:\n\t1) \"2 5\"\n\t2) \"B 5\"\n\t3) \"b 5\"\nRange: 1-7, A-G, a-g\nRe-enter the coordinates: ");
+                    buffer = false;
+                }
+                else{
+                    if(s[1].matches("[a-zA-Z]+")){
+                        buffer = false;
+                        System.out.print("You must enter only two coordinates in this format:\n\t1) \"2 5\"\n\t2) \"B 5\"\n\t3) \"b 5\"\nRange: 1-7, A-G, a-g\nRe-enter the coordinates: ");
+                    }
+                    else b = Integer.parseInt(s[1]);
+                    if(s[0].matches("[a-zA-Z0-9]*")){
+                        if(s[0].matches("[a-zA-Z]+")){
+                            char k = s[0].toUpperCase().charAt(0);
+                            a = k - 64;
+                        } else a = s[0].charAt(0) - 48;
+                    } else{
+                        buffer = false;
+                        System.out.print("You must enter only two coordinates in this format:\n\t1) \"2 5\"\n\t2) \"B 5\"\n\t3) \"b 5\"\nRange: 1-7, A-G, a-g\nRe-enter the coordinates: ");
+                    }
+                }
+            }else System.out.print("You must enter only two coordinates in this format:\n\t1) \"2 5\"\n\t2) \"B 5\"\n\t3) \"b 5\"\nRange: 1-7, A-G, a-g\nRe-enter the coordinates: ");
+
+            if(buffer){
+                if(a < 1 || a > 7 || b < 1 || b > 7) System.out.print("You must enter only two coordinates in this format:\n\t1) \"2 5\"\n\t2) \"B 5\"\n\t3) \"b 5\"\nRange: 1-7, A-G, a-g\nRe-enter the coordinates: ");
+                else ent = false;
+            }
+        }
+        int[] ar = new int[2];
+        ar[0] = a;
+        ar[1] = b;
+        return ar;
+    }
+
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 //        System.out.print("Enter your name: ");
@@ -150,13 +192,10 @@ public class Master {
         int count = 0;
         while(flag){
             if(!Search(ar))break;
-            boolean ent = true;
-            while(ent){
-                String[] s = scanner.nextLine().split(" ");
-                if(s.length == 2){
-                    continue;
-                }
-            }
+            int[] num = Enter();
+            int a = num[0], b = num[1];
+            System.out.println(num[0] + " " + num[1]);
+            break;
         }
     }
 }
