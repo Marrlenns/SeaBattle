@@ -186,6 +186,13 @@ public class Master {
         return ar;
     }
 
+    public static void FieldOutput(char[][] ar){
+        for(int i = 1; i < 8; i++){
+            for(int j = 0; j < 8; j++) System.out.print(ar[i][j]);
+            System.out.println();
+        }
+    }
+
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 //        System.out.print("Enter your name: ");
@@ -196,8 +203,10 @@ public class Master {
         while(flag){
             if(!Search(ar))break;
             int[] num = Enter();
-            int a = num[0], b = num[1];
-            System.out.println(num[0] + " " + num[1]);
+            int i = num[0], j = num[1];
+            if(ar[i][j] == '•'){
+                FieldOutput(ar);
+            }
             break;
         }
     }
