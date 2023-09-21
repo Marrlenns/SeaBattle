@@ -21,16 +21,16 @@ public class Master {
                     int r = rand.nextInt(1, 3);
                     if(r == 1){
                         if (j > 1 && j < 7){
-                            ar[i][j] = '*';
-                            ar[i][j - 1] = '*';
-                            ar[i][j + 1] = '*';
+                            ar[i][j] = '3';
+                            ar[i][j - 1] = '3';
+                            ar[i][j + 1] = '3';
                             flag = false;
                         }
                     } else{
                         if(i > 1 && i < 7){
-                            ar[i][j] = '*';
-                            ar[i - 1][j] = '*';
-                            ar[i + 1][j] = '*';
+                            ar[i][j] = '3';
+                            ar[i - 1][j] = '3';
+                            ar[i + 1][j] = '3';
                             flag = false;
                         }
                     }
@@ -45,64 +45,64 @@ public class Master {
                     if(r == 1){
                         if(j > 1 && ar[i][j] == '•' && ar[i][j - 1] == '•'){
                             boolean buffer = true;
-                            if(j > 2 && ar[i][j - 2] == '*')buffer = false;
-                            else if(j < 7 && ar[i][j + 1] == '*')buffer = false;
-                            else if((i > 1 && ar[i - 1][j] == '*') || (i > 1 && ar[i - 1][j - 1] == '*'))buffer = false;
-                            else if(i > 1 && j > 2 && ar[i - 1][j - 2] == '*')buffer = false;
-                            else if(j < 7 && i > 1 && ar[i - 1][j + 1] == '*')buffer = false;
-                            else if(j < 7 && i < 7 && ar[i + 1][j + 1] == '*')buffer = false;
-                            else if((i < 7 && ar[i + 1][j] == '*') || (i < 7 && ar[i + 1][j - 1] == '*'))buffer = false;
-                            else if(j > 2 && i < 7 && ar[i + 1][j - 2] == '*')buffer = false;
+                            if(j > 2 && ar[i][j - 2] != '•')buffer = false;
+                            else if(j < 7 && ar[i][j + 1] != '•')buffer = false;
+                            else if((i > 1 && ar[i - 1][j] != '•') || (i > 1 && ar[i - 1][j - 1] != '•'))buffer = false;
+                            else if(i > 1 && j > 2 && ar[i - 1][j - 2] != '•')buffer = false;
+                            else if(j < 7 && i > 1 && ar[i - 1][j + 1] != '•')buffer = false;
+                            else if(j < 7 && i < 7 && ar[i + 1][j + 1] != '•')buffer = false;
+                            else if((i < 7 && ar[i + 1][j] != '•') || (i < 7 && ar[i + 1][j - 1] != '•'))buffer = false;
+                            else if(j > 2 && i < 7 && ar[i + 1][j - 2] != '•')buffer = false;
                             if(buffer){
-                                ar[i][j] = '*';
-                                ar[i][j - 1] = '*';
+                                ar[i][j] = '2';
+                                ar[i][j - 1] = '2';
                                 flag = false;
                             }
                         } else if(j < 7 && ar[i][j] == '•' && ar[i][j + 1] == '•'){
                             boolean buffer = true;
-                            if(j > 1 && ar[i][j - 1] == '*')buffer = false;
-                            else if(j > 1 && i > 1 && ar[i - 1][j - 1] == '*')buffer = false;
-                            else if((i > 1 && ar[i - 1][j] == '*') || (i > 1 && ar[i - 1][j + 1] == '*'))buffer = false;
-                            else if(j < 6 && i > 1 && ar[i - 1][j + 2] == '*')buffer = false;
-                            else if(j < 6 && ar[i][j + 2] == '*')buffer = false;
-                            else if(j < 6 && i < 7 && ar[i + 1][j + 2] == '*')buffer = false;
-                            else if((i < 7 && ar[i + 1][j] == '*') || (i < 7 && ar[i + 1][j + 1] == '*'))buffer = false;
-                            else if(j > 1 && i < 7 && ar[i + 1][j - 1] == '*')buffer = false;
+                            if(j > 1 && ar[i][j - 1] != '•')buffer = false;
+                            else if(j > 1 && i > 1 && ar[i - 1][j - 1] != '•')buffer = false;
+                            else if((i > 1 && ar[i - 1][j] != '•') || (i > 1 && ar[i - 1][j + 1] != '•'))buffer = false;
+                            else if(j < 6 && i > 1 && ar[i - 1][j + 2] != '•')buffer = false;
+                            else if(j < 6 && ar[i][j + 2] != '•')buffer = false;
+                            else if(j < 6 && i < 7 && ar[i + 1][j + 2] != '•')buffer = false;
+                            else if((i < 7 && ar[i + 1][j] != '•') || (i < 7 && ar[i + 1][j + 1] != '•'))buffer = false;
+                            else if(j > 1 && i < 7 && ar[i + 1][j - 1] != '•')buffer = false;
                             if(buffer){
-                                ar[i][j] = '*';
-                                ar[i][j + 1] = '*';
+                                ar[i][j] = '2';
+                                ar[i][j + 1] = '2';
                                 flag = false;
                             }
                         }
                     } else{
                         if(i > 1 && ar[i][j] == '•' && ar[i - 1][j] == '•'){
                             boolean buffer = true;
-                            if(i > 2 && j > 1 && ar[i - 2][j - 1] == '*')buffer = false;
-                            else if(i > 2 && ar[i - 2][j] == '*')buffer = false;
-                            else if(i > 2 && j < 7 && ar[i - 2][j + 1] == '*')buffer = false;
-                            else if((j < 7 && ar[i - 1][j + 1] == '*') || (j < 7 && ar[i][j + 1] == '*'))buffer = false;
-                            else if(i < 7 && j < 7 && ar[i + 1][j + 1] == '*')buffer = false;
-                            else if(i < 7 && ar[i + 1][j] == '*')buffer = false;
-                            else if(i < 7 && j > 1 && ar[i + 1][j - 1] == '*')buffer = false;
-                            else if((j > 1 && ar[i - 1][j - 1] == '*') || (j > 1 && ar[i][j - 1] == '*'))buffer = false;
+                            if(i > 2 && j > 1 && ar[i - 2][j - 1] != '•')buffer = false;
+                            else if(i > 2 && ar[i - 2][j] != '•')buffer = false;
+                            else if(i > 2 && j < 7 && ar[i - 2][j + 1] != '•')buffer = false;
+                            else if((j < 7 && ar[i - 1][j + 1] != '•') || (j < 7 && ar[i][j + 1] != '•'))buffer = false;
+                            else if(i < 7 && j < 7 && ar[i + 1][j + 1] != '•')buffer = false;
+                            else if(i < 7 && ar[i + 1][j] != '•')buffer = false;
+                            else if(i < 7 && j > 1 && ar[i + 1][j - 1] != '•')buffer = false;
+                            else if((j > 1 && ar[i - 1][j - 1] != '•') || (j > 1 && ar[i][j - 1] != '•'))buffer = false;
                             if(buffer){
-                                ar[i][j] = '*';
-                                ar[i - 1][j] = '*';
+                                ar[i][j] = '2';
+                                ar[i - 1][j] = '2';
                                 flag = false;
                             }
                         } else if(i < 7 && ar[i][j] == '•' && ar[i + 1][j] == '•'){
                             boolean buffer = true;
-                            if(i > 1 && j > 1 && ar[i - 1][j - 1] == '*')buffer = false;
-                            else if(i > 1 && ar[i - 1][j] == '*')buffer = false;
-                            else if(i > 1 && j < 7 && ar[i - 1][j + 1] == '*')buffer = false;
-                            else if((j < 7 && ar[i + 1][j + 1] == '*') || (j < 7 && ar[i][j + 1] == '*'))buffer = false;
-                            else if(i < 6 && j < 7 && ar[i + 2][j + 1] == '*')buffer = false;
-                            else if(i < 6 && ar[i + 2][j] == '*')buffer = false;
-                            else if(i < 6 && j > 1 && ar[i + 2][j - 1] == '*')buffer = false;
-                            else if((j > 1 && ar[i + 1][j - 1] == '*') || (j > 1 && ar[i][j - 1] == '*'))buffer = false;
+                            if(i > 1 && j > 1 && ar[i - 1][j - 1] != '•')buffer = false;
+                            else if(i > 1 && ar[i - 1][j] != '•')buffer = false;
+                            else if(i > 1 && j < 7 && ar[i - 1][j + 1] != '•')buffer = false;
+                            else if((j < 7 && ar[i + 1][j + 1] != '•') || (j < 7 && ar[i][j + 1] != '•'))buffer = false;
+                            else if(i < 6 && j < 7 && ar[i + 2][j + 1] != '•')buffer = false;
+                            else if(i < 6 && ar[i + 2][j] != '•')buffer = false;
+                            else if(i < 6 && j > 1 && ar[i + 2][j - 1] != '•')buffer = false;
+                            else if((j > 1 && ar[i + 1][j - 1] == '*') || (j > 1 && ar[i][j - 1] != '•'))buffer = false;
                             if(buffer){
-                                ar[i][j] = '*';
-                                ar[i + 1][j] = '*';
+                                ar[i][j] = '2';
+                                ar[i + 1][j] = '2';
                                 flag = false;
                             }
                         }
@@ -114,16 +114,16 @@ public class Master {
                 int j = rand.nextInt(1, 8);
                 if(ar[i][j] == '•'){
                     boolean buffer = true;
-                    if(i > 1 && j > 1 && ar[i - 1][j - 1] == '*')buffer = false;
-                    else if(i > 1 && ar[i - 1][j] == '*')buffer = false;
-                    else if(i > 1 && j < 7 && ar[i - 1][j + 1] == '*')buffer = false;
-                    else if(j < 7 && ar[i][j + 1] == '*')buffer = false;
-                    else if(i < 7 && j < 7 && ar[i + 1][j + 1] == '*')buffer = false;
-                    else if(i < 7 && ar[i + 1][j] == '*')buffer = false;
-                    else if(i < 7 && j > 1 && ar[i + 1][j - 1] == '*')buffer = false;
-                    else if(j > 1 && ar[i][j - 1] == '*')buffer = false;
+                    if(i > 1 && j > 1 && ar[i - 1][j - 1] != '•')buffer = false;
+                    else if(i > 1 && ar[i - 1][j] != '•')buffer = false;
+                    else if(i > 1 && j < 7 && ar[i - 1][j + 1] != '•')buffer = false;
+                    else if(j < 7 && ar[i][j + 1] != '•')buffer = false;
+                    else if(i < 7 && j < 7 && ar[i + 1][j + 1] != '•')buffer = false;
+                    else if(i < 7 && ar[i + 1][j] != '•')buffer = false;
+                    else if(i < 7 && j > 1 && ar[i + 1][j - 1] != '•')buffer = false;
+                    else if(j > 1 && ar[i][j - 1] != '•')buffer = false;
                     if(buffer){
-                        ar[i][j] = '*';
+                        ar[i][j] = '1';
                         a4 --;
                     }
                 }
@@ -141,11 +141,12 @@ public class Master {
         return false;
     }
 
-    public static int[] Enter(){
+    public static int[] Enter(boolean used){
         Scanner scanner = new Scanner(System.in);
         boolean ent = true;
         int a = 0, b = 0;
-        System.out.print("Enter the coordinates: ");
+        if(used) System.out.print("You already attacked these coordinates\nEnter other coordinates: ");
+        else System.out.print("Enter the coordinates: ");
         while(ent){
             boolean buffer = true;
             String[] s = scanner.nextLine().split(" ");
@@ -188,7 +189,7 @@ public class Master {
 
     public static void FieldOutput(char[][] ar){
         for(int i = 1; i < 8; i++){
-            for(int j = 0; j < 8; j++) System.out.print(ar[i][j]);
+            for(int j = 1; j < 8; j++) System.out.print(ar[i][j] + " ");
             System.out.println();
         }
     }
@@ -197,17 +198,31 @@ public class Master {
         Scanner scanner = new Scanner(System.in);
 //        System.out.print("Enter your name: ");
 //        String s = scanner.nextLine();
-        char[][] ar = SeaBattle();
-        boolean flag = true;
+        char[][] ar = SeaBattle(), ans = new char[8][8];
+        for(int i = 0; i < 8; i++)for(int j = 0; j < 8; j++)ans[i][j] = '•';
+        boolean flag = true, used = false;
         int count = 0;
         while(flag){
             if(!Search(ar))break;
-            int[] num = Enter();
+            int[] num = Enter(used);
             int i = num[0], j = num[1];
-            if(ar[i][j] == '•'){
-                FieldOutput(ar);
+            if(ar[i][j] == '•' && ans[i][j] != 'm'){
+                System.out.println("------MISS------");
+                ans[i][j] = 'm';
+                used = false;
+                FieldOutput(ans);
+            } else if(ans[i][j] == 'm'){
+                used = true;
+                continue;
+            } else if(ar[i][j] != '•'){
+                if(ar[i][j] == '1'){
+                    System.out.println("------SUNK------");
+                    ar[i][j] = '+';
+                    ans[i][j] = '+';
+                }
+
             }
-            break;
+
         }
     }
 }
