@@ -135,7 +135,7 @@ public class Master {
     public static boolean Search(char[][] ar){
         for(int i = 1; i < 8; i++){
             for(int j = 1; j < 8; j++){
-                if(ar[i][j] == '*')return true;
+                if(ar[i][j] != '•')return true;
             }
         }
         return false;
@@ -188,11 +188,14 @@ public class Master {
     }
 
     public static void FieldOutput(char[][] ar){
+        System.out.println("  1 2 3 4 5 6 7");
         for(int i = 1; i < 8; i++){
+            System.out.print((char)(i + 64) + " ");
             for(int j = 1; j < 8; j++) System.out.print(ar[i][j] + " ");
             System.out.println();
         }
     }
+
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
@@ -206,12 +209,12 @@ public class Master {
             if(!Search(ar))break;
             int[] num = Enter(used);
             int i = num[0], j = num[1];
-            if(ar[i][j] == '•' && ans[i][j] != 'm'){
+            if(ar[i][j] == '•' && ans[i][j] != '⬛'){
                 System.out.println("------MISS------");
-                ans[i][j] = 'm';
+                ans[i][j] = '⬛';
+//                ans[i][j] = '⚪';
                 used = false;
-                FieldOutput(ans);
-            } else if(ans[i][j] == 'm'){
+            } else if(ans[i][j] == '⬛'){
                 used = true;
                 continue;
             } else if(ar[i][j] != '•'){
@@ -219,10 +222,25 @@ public class Master {
                     System.out.println("------SUNK------");
                     ar[i][j] = '+';
                     ans[i][j] = '+';
+                    if(i > 1 && ans[i - 1][j] != '⬛')ans[i - 1][j] = '⚪';
+                    if(i < 7 && ans[i + 1][j] != '⬛')ans[i + 1][j] = '⚪';
+                    if(j > 1 && ans[i][j - 1] != '⬛')ans[i][j - 1] = '⚪';
+                    if(j < 7 && ans[i][j + 1] != '⬛')ans[i][j + 1] = '⚪';
+                    if(i > 1 && j > 1 && ans[i - 1][j - 1] != '⬛')ans[i - 1][j - 1] = '⚪';
+                    if(i > 1 && j < 7 && ans[i - 1][j + 1] != '⬛')ans[i - 1][j + 1] = '⚪';
+                    if(i < 7 && j > 1 && ans[i + 1][j - 1] != '⬛')ans[i + 1][j - 1] = '⚪';
+                    if(i < 7 && j < 7 && ans[i + 1][j + 1] != '⬛')ans[i + 1][j + 1] = '⚪';
+                } else if(ar[i][j] == '2'){
+                    ar[i][j] = '+';
+                    ans[i][j] = '+';
+                    if(i > 1 && ans[i - 1][j] == '+'){
+                        System.out.println("------SUNK------");
+//                        shipSunk(ans, i, j, i - 1, j);
+                    }
+                    System.out.println("------HIT------");
                 }
-
             }
-
+            FieldOutput(ans);
         }
     }
 }
