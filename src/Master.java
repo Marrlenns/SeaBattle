@@ -1,8 +1,7 @@
-import java.util.AbstractMap;
-import java.util.Arrays;
-import java.util.Random;
-import java.util.Scanner;
- // █░❌
+import sun.misc.SignalHandler;
+
+import java.util.*;
+// █░❌
 
 
 public class Master {
@@ -136,7 +135,7 @@ public class Master {
         int sum = 0;
         for(int i = 1; i < 8; i++){
             for(int j = 1; j < 8; j++){
-                if(ar[i][j] == '+')sum ++;
+                if(ar[i][j] == '*')sum ++;
             }
         }
         return sum != 11;
@@ -217,59 +216,145 @@ public class Master {
         if(i > 1 && j < 7 && ans[i - 1][j + 1] != '⬛' && ans[i - 1][j + 1] != '+')ans[i - 1][j + 1] = '⚪';
         if(i < 7 && j > 1 && ans[i + 1][j - 1] != '⬛' && ans[i + 1][j - 1] != '+')ans[i + 1][j - 1] = '⚪';
         if(i < 7 && j < 7 && ans[i + 1][j + 1] != '⬛' && ans[i + 1][j + 1] != '+')ans[i + 1][j + 1] = '⚪';
+        ans[a][b] = '*';
+        ans[c][d] = '*';
+        System.out.println("------SUNK------");
+        return ans;
+    }
+
+    public static char[][] ShipSunk3(char[][] ans, int a, int b, int c, int d, int e, int f){
+        int i = a, j = b;
+        if(i > 1 && ans[i - 1][j] != '⬛' && ans[i - 1][j] != '+')ans[i - 1][j] = '⚪';
+        if(i < 7 && ans[i + 1][j] != '⬛' && ans[i + 1][j] != '+')ans[i + 1][j] = '⚪';
+        if(j > 1 && ans[i][j - 1] != '⬛' && ans[i][j - 1] != '+')ans[i][j - 1] = '⚪';
+        if(j < 7 && ans[i][j + 1] != '⬛' && ans[i][j + 1] != '+')ans[i][j + 1] = '⚪';
+        if(i > 1 && j > 1 && ans[i - 1][j - 1] != '⬛' && ans[i - 1][j - 1] != '+')ans[i - 1][j - 1] = '⚪';
+        if(i > 1 && j < 7 && ans[i - 1][j + 1] != '⬛' && ans[i - 1][j + 1] != '+')ans[i - 1][j + 1] = '⚪';
+        if(i < 7 && j > 1 && ans[i + 1][j - 1] != '⬛' && ans[i + 1][j - 1] != '+')ans[i + 1][j - 1] = '⚪';
+        if(i < 7 && j < 7 && ans[i + 1][j + 1] != '⬛' && ans[i + 1][j + 1] != '+')ans[i + 1][j + 1] = '⚪';
+        i = c;
+        j = d;
+        if(i > 1 && ans[i - 1][j] != '⬛' && ans[i - 1][j] != '+')ans[i - 1][j] = '⚪';
+        if(i < 7 && ans[i + 1][j] != '⬛' && ans[i + 1][j] != '+')ans[i + 1][j] = '⚪';
+        if(j > 1 && ans[i][j - 1] != '⬛' && ans[i][j - 1] != '+')ans[i][j - 1] = '⚪';
+        if(j < 7 && ans[i][j + 1] != '⬛' && ans[i][j + 1] != '+')ans[i][j + 1] = '⚪';
+        if(i > 1 && j > 1 && ans[i - 1][j - 1] != '⬛' && ans[i - 1][j - 1] != '+')ans[i - 1][j - 1] = '⚪';
+        if(i > 1 && j < 7 && ans[i - 1][j + 1] != '⬛' && ans[i - 1][j + 1] != '+')ans[i - 1][j + 1] = '⚪';
+        if(i < 7 && j > 1 && ans[i + 1][j - 1] != '⬛' && ans[i + 1][j - 1] != '+')ans[i + 1][j - 1] = '⚪';
+        if(i < 7 && j < 7 && ans[i + 1][j + 1] != '⬛' && ans[i + 1][j + 1] != '+')ans[i + 1][j + 1] = '⚪';
+        i = e;
+        j = f;
+        if(i > 1 && ans[i - 1][j] != '⬛' && ans[i - 1][j] != '+')ans[i - 1][j] = '⚪';
+        if(i < 7 && ans[i + 1][j] != '⬛' && ans[i + 1][j] != '+')ans[i + 1][j] = '⚪';
+        if(j > 1 && ans[i][j - 1] != '⬛' && ans[i][j - 1] != '+')ans[i][j - 1] = '⚪';
+        if(j < 7 && ans[i][j + 1] != '⬛' && ans[i][j + 1] != '+')ans[i][j + 1] = '⚪';
+        if(i > 1 && j > 1 && ans[i - 1][j - 1] != '⬛' && ans[i - 1][j - 1] != '+')ans[i - 1][j - 1] = '⚪';
+        if(i > 1 && j < 7 && ans[i - 1][j + 1] != '⬛' && ans[i - 1][j + 1] != '+')ans[i - 1][j + 1] = '⚪';
+        if(i < 7 && j > 1 && ans[i + 1][j - 1] != '⬛' && ans[i + 1][j - 1] != '+')ans[i + 1][j - 1] = '⚪';
+        if(i < 7 && j < 7 && ans[i + 1][j + 1] != '⬛' && ans[i + 1][j + 1] != '+')ans[i + 1][j + 1] = '⚪';
+        ans[a][b] = '*';
+        ans[c][d] = '*';
+        ans[e][f] = '*';
         System.out.println("------SUNK------");
         return ans;
     }
 
     public static void main(String[] args) {
+        ArrayList<String> names = new ArrayList<String>();
         Scanner scanner = new Scanner(System.in);
-//        System.out.print("Enter your name: ");
-//        String s = scanner.nextLine();
-        char[][] ar = SeaBattle(), ans = new char[8][8];
-        for(int i = 0; i < 8; i++)for(int j = 0; j < 8; j++)ans[i][j] = '•';
-        boolean flag = true, used = false;
-        int count = 0;
+        boolean flag = true;
         while(flag){
-            if(!Search(ans))break;
-            int[] num = Enter(used);
-            int i = num[0], j = num[1];
-            if(ar[i][j] == '•' && ans[i][j] != '⬛'){
-                System.out.println("------MISS------");
-                ans[i][j] = '⬛';
-                used = false;
-            } else if(ans[i][j] == '⬛' || ans[i][j] == '+'){
-                used = true;
-                continue;
-            } else if(ar[i][j] != '•'){
-                if(ar[i][j] == '1'){
-                    System.out.println("------SUNK------");
-                    ar[i][j] = '+';
-                    ans[i][j] = '+';
-                    if(i > 1 && ans[i - 1][j] != '⬛')ans[i - 1][j] = '⚪';
-                    if(i < 7 && ans[i + 1][j] != '⬛')ans[i + 1][j] = '⚪';
-                    if(j > 1 && ans[i][j - 1] != '⬛')ans[i][j - 1] = '⚪';
-                    if(j < 7 && ans[i][j + 1] != '⬛')ans[i][j + 1] = '⚪';
-                    if(i > 1 && j > 1 && ans[i - 1][j - 1] != '⬛')ans[i - 1][j - 1] = '⚪';
-                    if(i > 1 && j < 7 && ans[i - 1][j + 1] != '⬛')ans[i - 1][j + 1] = '⚪';
-                    if(i < 7 && j > 1 && ans[i + 1][j - 1] != '⬛')ans[i + 1][j - 1] = '⚪';
-                    if(i < 7 && j < 7 && ans[i + 1][j + 1] != '⬛')ans[i + 1][j + 1] = '⚪';
-                } else if(ar[i][j] == '2'){
-                    ar[i][j] = '+';
-                    ans[i][j] = '+';
-                    if(i > 1 && ans[i - 1][j] == '+') ans = ShipSunk2(ans, i, j, i - 1, j);
-                    else if(i < 7 && ans[i + 1][j] == '+') ans = ShipSunk2(ans, i, j, i + 1, j);
-                    else if(j > 1 && ans[i][j - 1] == '+') ans = ShipSunk2(ans, i, j, i, j - 1);
-                    else if(j < 7 && ans[i][j + 1] == '+') ans = ShipSunk2(ans, i, j, i, j + 1);
-                    else System.out.println("------HIT------");
-                } else if(ar[i][j] == '3'){
-                    System.out.println("------HIT3------");
-                    ar[i][j] = '+';
-                    ans[i][j] = '+';
+            System.out.print("Enter your name: ");
+            String name = scanner.nextLine();
+            char[][] ar = SeaBattle(), ans = new char[8][8];
+            for(int i = 0; i < 8; i++)for(int j = 0; j < 8; j++)ans[i][j] = '•';
+            boolean used = false;
+            int count = 0;
+            while(true){
+                if(!Search(ans))break;
+                int[] num = Enter(used);
+                int i = num[0], j = num[1];
+                if(ar[i][j] == '•' && ans[i][j] != '⬛'){
+                    System.out.println("------MISS------");
+                    ans[i][j] = '⬛';
+                    used = false;
+                } else if(ans[i][j] == '⬛' || ans[i][j] == '+'){
+                    used = true;
+                    continue;
+                } else if(ar[i][j] != '•'){
+                    if(ar[i][j] == '1'){
+                        System.out.println("------SUNK------");
+                        ar[i][j] = '+';
+                        ans[i][j] = '*';
+                        if(i > 1 && ans[i - 1][j] != '⬛')ans[i - 1][j] = '⚪';
+                        if(i < 7 && ans[i + 1][j] != '⬛')ans[i + 1][j] = '⚪';
+                        if(j > 1 && ans[i][j - 1] != '⬛')ans[i][j - 1] = '⚪';
+                        if(j < 7 && ans[i][j + 1] != '⬛')ans[i][j + 1] = '⚪';
+                        if(i > 1 && j > 1 && ans[i - 1][j - 1] != '⬛')ans[i - 1][j - 1] = '⚪';
+                        if(i > 1 && j < 7 && ans[i - 1][j + 1] != '⬛')ans[i - 1][j + 1] = '⚪';
+                        if(i < 7 && j > 1 && ans[i + 1][j - 1] != '⬛')ans[i + 1][j - 1] = '⚪';
+                        if(i < 7 && j < 7 && ans[i + 1][j + 1] != '⬛')ans[i + 1][j + 1] = '⚪';
+                    } else if(ar[i][j] == '2'){
+                        ar[i][j] = '+';
+                        ans[i][j] = '+';
+                        if(i > 1 && ans[i - 1][j] == '+') ans = ShipSunk2(ans, i, j, i - 1, j);
+                        else if(i < 7 && ans[i + 1][j] == '+') ans = ShipSunk2(ans, i, j, i + 1, j);
+                        else if(j > 1 && ans[i][j - 1] == '+') ans = ShipSunk2(ans, i, j, i, j - 1);
+                        else if(j < 7 && ans[i][j + 1] == '+') ans = ShipSunk2(ans, i, j, i, j + 1);
+                        else System.out.println("------HIT------");
+                    } else if(ar[i][j] == '3'){
+                        if(i > 1 && ans[i - 1][j] == '+'){
+                            if(i > 2 && ans[i - 2][j] == '+')ans = ShipSunk3(ans, i, j, i - 1, j, i - 2, j);
+                            else if(i < 7 && ans[i + 1][j] == '+')ans = ShipSunk3(ans, i, j, i - 1, j, i + 1, j);
+                            else {
+                                System.out.println("------HIT------");
+                                ar[i][j] = '+';
+                                ans[i][j] = '+';
+                            }
+                        } else if(i < 7 && ar[i + 1][j] == '+'){
+                            if(i < 6 && ans[i + 2][j] == '+')ans = ShipSunk3(ans, i, j, i + 1, j, i + 2, j);
+                            else if(i > 1 && ans[i - 1][j] == '+')ans = ShipSunk3(ans, i, j, i + 1, j, i - 1, j);
+                            else {
+                                System.out.println("------HIT------");
+                                ar[i][j] = '+';
+                                ans[i][j] = '+';
+                            }
+                        } else if(j > 1 && ans[i][j - 1] == '+'){
+                            if(j > 2 && ans[i][j - 2] == '+')ans = ShipSunk3(ans, i, j, i, j - 1, i, j - 2);
+                            else if(j < 7 && ans[i][j + 1] == '+')ans = ShipSunk3(ans, i, j, i, j - 1, i, j + 1);
+                            else {
+                                System.out.println("------HIT------");
+                                ar[i][j] = '+';
+                                ans[i][j] = '+';
+                            }
+                        } else if(j < 7 && ans[i][j + 1] == '+'){
+                            if(j < 6 && ans[i][j + 2] == '+')ans = ShipSunk3(ans, i, j, i, j + 1, i, j + 2);
+                            else if(j > 1 && ans[i][j - 1] == '+')ans = ShipSunk3(ans, i, j, i, j + 1, i, j - 1);
+                            else {
+                                System.out.println("------HIT------");
+                                ar[i][j] = '+';
+                                ans[i][j] = '+';
+                            }
+                        } else {
+                            System.out.println("------HIT------");
+                            ar[i][j] = '+';
+                            ans[i][j] = '+';
+                        }
+                    }
                 }
+                count ++;
+                FieldOutput(ans);
             }
-            count ++;
-            FieldOutput(ans);
+            System.out.println("U have " + count + " moves!");
+            names.add(count + " - " + name);
+            System.out.println("If you want to finish the game, type \"stop\": ");
+            String answer = scanner.nextLine();
+            if(answer.toLowerCase().equals("stop"))flag = false;
         }
-        System.out.println("You move " + count + " times!");
+
+        Collections.sort(names);
+        for(int i = 0; i < names.size(); i++){
+            System.out.println((i + 1) + ") " + names.get(i));
+        }
     }
 }
