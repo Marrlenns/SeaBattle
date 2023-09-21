@@ -133,12 +133,13 @@ public class Master {
     }
 
     public static boolean Search(char[][] ar){
+        int sum = 0;
         for(int i = 1; i < 8; i++){
             for(int j = 1; j < 8; j++){
-                if(ar[i][j] != '•')return true;
+                if(ar[i][j] == '+')sum ++;
             }
         }
-        return false;
+        return sum != 11;
     }
 
     public static int[] Enter(boolean used){
@@ -196,6 +197,29 @@ public class Master {
         }
     }
 
+    public static char[][] ShipSunk2(char[][] ans, int a, int b, int c, int d){
+        int i = a, j = b;
+        if(i > 1 && ans[i - 1][j] != '⬛' && ans[i - 1][j] != '+')ans[i - 1][j] = '⚪';
+        if(i < 7 && ans[i + 1][j] != '⬛' && ans[i + 1][j] != '+')ans[i + 1][j] = '⚪';
+        if(j > 1 && ans[i][j - 1] != '⬛' && ans[i][j - 1] != '+')ans[i][j - 1] = '⚪';
+        if(j < 7 && ans[i][j + 1] != '⬛' && ans[i][j + 1] != '+')ans[i][j + 1] = '⚪';
+        if(i > 1 && j > 1 && ans[i - 1][j - 1] != '⬛' && ans[i - 1][j - 1] != '+')ans[i - 1][j - 1] = '⚪';
+        if(i > 1 && j < 7 && ans[i - 1][j + 1] != '⬛' && ans[i - 1][j + 1] != '+')ans[i - 1][j + 1] = '⚪';
+        if(i < 7 && j > 1 && ans[i + 1][j - 1] != '⬛' && ans[i + 1][j - 1] != '+')ans[i + 1][j - 1] = '⚪';
+        if(i < 7 && j < 7 && ans[i + 1][j + 1] != '⬛' && ans[i + 1][j + 1] != '+')ans[i + 1][j + 1] = '⚪';
+        i = c;
+        j = d;
+        if(i > 1 && ans[i - 1][j] != '⬛' && ans[i - 1][j] != '+')ans[i - 1][j] = '⚪';
+        if(i < 7 && ans[i + 1][j] != '⬛' && ans[i + 1][j] != '+')ans[i + 1][j] = '⚪';
+        if(j > 1 && ans[i][j - 1] != '⬛' && ans[i][j - 1] != '+')ans[i][j - 1] = '⚪';
+        if(j < 7 && ans[i][j + 1] != '⬛' && ans[i][j + 1] != '+')ans[i][j + 1] = '⚪';
+        if(i > 1 && j > 1 && ans[i - 1][j - 1] != '⬛' && ans[i - 1][j - 1] != '+')ans[i - 1][j - 1] = '⚪';
+        if(i > 1 && j < 7 && ans[i - 1][j + 1] != '⬛' && ans[i - 1][j + 1] != '+')ans[i - 1][j + 1] = '⚪';
+        if(i < 7 && j > 1 && ans[i + 1][j - 1] != '⬛' && ans[i + 1][j - 1] != '+')ans[i + 1][j - 1] = '⚪';
+        if(i < 7 && j < 7 && ans[i + 1][j + 1] != '⬛' && ans[i + 1][j + 1] != '+')ans[i + 1][j + 1] = '⚪';
+        System.out.println("------SUNK------");
+        return ans;
+    }
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
@@ -206,15 +230,14 @@ public class Master {
         boolean flag = true, used = false;
         int count = 0;
         while(flag){
-            if(!Search(ar))break;
+            if(!Search(ans))break;
             int[] num = Enter(used);
             int i = num[0], j = num[1];
             if(ar[i][j] == '•' && ans[i][j] != '⬛'){
                 System.out.println("------MISS------");
                 ans[i][j] = '⬛';
-//                ans[i][j] = '⚪';
                 used = false;
-            } else if(ans[i][j] == '⬛'){
+            } else if(ans[i][j] == '⬛' || ans[i][j] == '+'){
                 used = true;
                 continue;
             } else if(ar[i][j] != '•'){
@@ -233,14 +256,20 @@ public class Master {
                 } else if(ar[i][j] == '2'){
                     ar[i][j] = '+';
                     ans[i][j] = '+';
-                    if(i > 1 && ans[i - 1][j] == '+'){
-                        System.out.println("------SUNK------");
-//                        shipSunk(ans, i, j, i - 1, j);
-                    }
-                    System.out.println("------HIT------");
+                    if(i > 1 && ans[i - 1][j] == '+') ans = ShipSunk2(ans, i, j, i - 1, j);
+                    else if(i < 7 && ans[i + 1][j] == '+') ans = ShipSunk2(ans, i, j, i + 1, j);
+                    else if(j > 1 && ans[i][j - 1] == '+') ans = ShipSunk2(ans, i, j, i, j - 1);
+                    else if(j < 7 && ans[i][j + 1] == '+') ans = ShipSunk2(ans, i, j, i, j + 1);
+                    else System.out.println("------HIT------");
+                } else if(ar[i][j] == '3'){
+                    System.out.println("------HIT3------");
+                    ar[i][j] = '+';
+                    ans[i][j] = '+';
                 }
             }
+            count ++;
             FieldOutput(ans);
         }
+        System.out.println("You move " + count + " times!");
     }
 }
