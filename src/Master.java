@@ -1,8 +1,4 @@
-import sun.misc.SignalHandler;
-
 import java.util.*;
-// █░❌
-
 
 public class Master {
 
@@ -347,7 +343,7 @@ public class Master {
             }
             System.out.println("U have " + count + " moves!");
             names.add(count + " - " + name);
-            System.out.println("If you want to finish the game, type \"stop\": ");
+            System.out.print("If you want to finish the game, type \"stop\": ");
             String answer = scanner.nextLine();
             if(answer.toLowerCase().equals("stop"))flag = false;
         }
